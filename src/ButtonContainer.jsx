@@ -14,26 +14,42 @@ const ButtonRow = styled.div`
   justify-content: center;
 `;
 
-const ButtonContainer = (props) => {
+const ButtonContainer = ({handleClick}) => {
   return (
+    // <ButtonContainerStyling handleClick={e=>handleClick(e.target.value)}>
     <ButtonContainerStyling>
       <ButtonRow>
-        <Button buttonValue={7} />
-        <Button buttonValue={8} />
-        <Button buttonValue={9} />
+        <Button buttonValue={7} handleClick={handleClick}/>
+        <Button buttonValue={8} handleClick={handleClick} />
+        <Button buttonValue={9} handleClick={handleClick} />
+        <Button buttonValue={'/'} handleClick={handleClick} />
       </ButtonRow>
       <ButtonRow>
-        <Button buttonValue={4} />
-        <Button buttonValue={5} />
-        <Button buttonValue={6} />
+        <Button buttonValue={4} handleClick={handleClick} />
+        <Button buttonValue={5} handleClick={handleClick} />
+        <Button buttonValue={6} handleClick={handleClick} />
+        <Button buttonValue={'X'} handleClick={handleClick} />
       </ButtonRow>
       <ButtonRow>
-        <Button buttonValue={1} />
-        <Button buttonValue={2} />
-        <Button buttonValue={3} />
+        <Button buttonValue={1} handleClick={handleClick} />
+        <Button buttonValue={2} handleClick={handleClick} />
+        <Button buttonValue={3} handleClick={handleClick} />
+        <Button buttonValue={'-'} handleClick={handleClick} />
+      </ButtonRow>
+      <ButtonRow>
+        <Button buttonValue={'.'} handleClick={handleClick} />
+        <Button buttonValue={0} handleClick={handleClick}/>
+        <Button buttonValue={'='} handleClick={handleClick} />
+        <Button buttonValue={'+'} handleClick={handleClick} />
+      </ButtonRow>
+      <ButtonRow>
+        <Button buttonValue={'clear'} handleClick={handleClick} />
+
       </ButtonRow>
     </ButtonContainerStyling>
    );
 }
 
 export default ButtonContainer;
+
+
