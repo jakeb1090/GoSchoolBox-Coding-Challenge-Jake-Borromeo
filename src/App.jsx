@@ -12,10 +12,22 @@ const AppStyling = styled.div`
 `;
 
 const App = (props) => {
+  const [ displayVal, setDisplayVal ] = useState('0')
+
+  const handleClick = (buttonVal) => {
+    console.log(buttonVal)
+    if (buttonVal.target.outerText === 'clear') {
+      setDisplayVal('')
+    } else {
+
+      setDisplayVal(prevState=> prevState += buttonVal.target.outerText)
+    }
+  }
+
   return (
     <AppStyling>
-      <Display />
-      <ButtonContainer />
+      <Display displayOutput={displayVal}/>
+      <ButtonContainer handleClick={handleClick} />
     </AppStyling>
    );
 }

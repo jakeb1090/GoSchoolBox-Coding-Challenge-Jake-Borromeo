@@ -1054,7 +1054,7 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useReducer(reducer, initialArg, init);
         }
-        function useRef(initialValue) {
+        function useRef2(initialValue) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useRef(initialValue);
         }
@@ -1633,7 +1633,7 @@ var require_react_development = __commonJS({
         exports2.useLayoutEffect = useLayoutEffect;
         exports2.useMemo = useMemo;
         exports2.useReducer = useReducer;
-        exports2.useRef = useRef;
+        exports2.useRef = useRef2;
         exports2.useState = useState5;
         exports2.version = ReactVersion;
       })();
@@ -21919,12 +21919,13 @@ var DisplayContainer = styled_components_browser_esm_default.div`
   display: flex;
   flex-direction: row;
   border: 1px solid magenta;
-  justify-content: center;
+  justify-content: right;
   padding: .5em;
   margin: 1em;
+  font-size: 2em;
 `;
-var Display = (props) => {
-  return /* @__PURE__ */ import_react2.default.createElement(DisplayContainer, null, "Display");
+var Display = ({ displayOutput }) => {
+  return /* @__PURE__ */ import_react2.default.createElement(DisplayContainer, null, displayOutput);
 };
 var Display_default = Display;
 
@@ -21940,8 +21941,11 @@ var ButtonWrapper = styled_components_browser_esm_default.div`
   margin: 1em;
   padding: 1em;
 `;
-var Button = ({ buttonValue }) => {
-  return /* @__PURE__ */ import_react3.default.createElement(ButtonWrapper, null, buttonValue);
+var Button = ({ buttonValue, handleClick }) => {
+  return /* @__PURE__ */ import_react3.default.createElement(ButtonWrapper, {
+    value: buttonValue,
+    onClick: handleClick
+  }, buttonValue);
 };
 var Button_default = Button;
 
@@ -21956,25 +21960,58 @@ var ButtonRow = styled_components_browser_esm_default.div`
   min-width: 10em;
   justify-content: center;
 `;
-var ButtonContainer = (props) => {
+var ButtonContainer = ({ handleClick }) => {
   return /* @__PURE__ */ import_react4.default.createElement(ButtonContainerStyling, null, /* @__PURE__ */ import_react4.default.createElement(ButtonRow, null, /* @__PURE__ */ import_react4.default.createElement(Button_default, {
-    buttonValue: 7
+    buttonValue: 7,
+    handleClick
   }), /* @__PURE__ */ import_react4.default.createElement(Button_default, {
-    buttonValue: 8
+    buttonValue: 8,
+    handleClick
   }), /* @__PURE__ */ import_react4.default.createElement(Button_default, {
-    buttonValue: 9
+    buttonValue: 9,
+    handleClick
+  }), /* @__PURE__ */ import_react4.default.createElement(Button_default, {
+    buttonValue: "/",
+    handleClick
   })), /* @__PURE__ */ import_react4.default.createElement(ButtonRow, null, /* @__PURE__ */ import_react4.default.createElement(Button_default, {
-    buttonValue: 4
+    buttonValue: 4,
+    handleClick
   }), /* @__PURE__ */ import_react4.default.createElement(Button_default, {
-    buttonValue: 5
+    buttonValue: 5,
+    handleClick
   }), /* @__PURE__ */ import_react4.default.createElement(Button_default, {
-    buttonValue: 6
+    buttonValue: 6,
+    handleClick
+  }), /* @__PURE__ */ import_react4.default.createElement(Button_default, {
+    buttonValue: "X",
+    handleClick
   })), /* @__PURE__ */ import_react4.default.createElement(ButtonRow, null, /* @__PURE__ */ import_react4.default.createElement(Button_default, {
-    buttonValue: 1
+    buttonValue: 1,
+    handleClick
   }), /* @__PURE__ */ import_react4.default.createElement(Button_default, {
-    buttonValue: 2
+    buttonValue: 2,
+    handleClick
   }), /* @__PURE__ */ import_react4.default.createElement(Button_default, {
-    buttonValue: 3
+    buttonValue: 3,
+    handleClick
+  }), /* @__PURE__ */ import_react4.default.createElement(Button_default, {
+    buttonValue: "-",
+    handleClick
+  })), /* @__PURE__ */ import_react4.default.createElement(ButtonRow, null, /* @__PURE__ */ import_react4.default.createElement(Button_default, {
+    buttonValue: ".",
+    handleClick
+  }), /* @__PURE__ */ import_react4.default.createElement(Button_default, {
+    buttonValue: 0,
+    handleClick
+  }), /* @__PURE__ */ import_react4.default.createElement(Button_default, {
+    buttonValue: "=",
+    handleClick
+  }), /* @__PURE__ */ import_react4.default.createElement(Button_default, {
+    buttonValue: "+",
+    handleClick
+  })), /* @__PURE__ */ import_react4.default.createElement(ButtonRow, null, /* @__PURE__ */ import_react4.default.createElement(Button_default, {
+    buttonValue: "clear",
+    handleClick
   })));
 };
 var ButtonContainer_default = ButtonContainer;
@@ -21988,7 +22025,20 @@ var AppStyling = styled_components_browser_esm_default.div`
   padding: 1em;
 `;
 var App = (props) => {
-  return /* @__PURE__ */ import_react5.default.createElement(AppStyling, null, /* @__PURE__ */ import_react5.default.createElement(Display_default, null), /* @__PURE__ */ import_react5.default.createElement(ButtonContainer_default, null));
+  const [displayVal, setDisplayVal] = (0, import_react5.useState)("0");
+  const handleClick = (buttonVal) => {
+    console.log(buttonVal);
+    if (buttonVal.target.outerText === "clear") {
+      setDisplayVal("");
+    } else {
+      setDisplayVal((prevState) => prevState += buttonVal.target.outerText);
+    }
+  };
+  return /* @__PURE__ */ import_react5.default.createElement(AppStyling, null, /* @__PURE__ */ import_react5.default.createElement(Display_default, {
+    displayOutput: displayVal
+  }), /* @__PURE__ */ import_react5.default.createElement(ButtonContainer_default, {
+    handleClick
+  }));
 };
 var App_default = App;
 

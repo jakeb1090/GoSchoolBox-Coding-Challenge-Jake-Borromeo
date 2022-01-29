@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const ButtonWrapper = styled.div`
@@ -9,9 +9,9 @@ const ButtonWrapper = styled.div`
   padding: 1em;
 `;
 
-const Button = ({buttonValue}) => {
+const Button = ({buttonValue, handleClick}) => {
   return (
-    <ButtonWrapper>
+    <ButtonWrapper value={buttonValue} onClick={handleClick}>
       {buttonValue}
     </ButtonWrapper>
    );

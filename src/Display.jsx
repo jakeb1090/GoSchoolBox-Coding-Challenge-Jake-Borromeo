@@ -5,16 +5,17 @@ const DisplayContainer = styled.div`
   display: flex;
   flex-direction: row;
   border: 1px solid magenta;
-  justify-content: center;
+  justify-content: right;
   padding: .5em;
   margin: 1em;
+  font-size: 2em;
 `;
 
-const Display = (props) => {
+const Display = ({displayOutput}) => {
   return (
     <DisplayContainer>
-      Display
-      </DisplayContainer>
+      {displayOutput}
+    </DisplayContainer>
    );
 }
 
